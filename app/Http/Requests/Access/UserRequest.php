@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Access;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Factory;
 use Illuminate\Validation\ValidationException;
 
 class UserRequest extends FormRequest

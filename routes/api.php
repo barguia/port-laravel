@@ -3,6 +3,7 @@
 use App\Http\Controllers\Access\AclProfileController;
 use App\Http\Controllers\Access\AuthController;
 use App\Http\Controllers\Access\UserController;
+use App\Http\Controllers\Workflow\CtlProcessHierarchyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,20 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 Route::get('/logout', [AuthController::class, 'logout'])
     ->middleware(['auth:api'])
     ->name('api.logout');
 
-Route::resource('/users', UserController::class)
-    ->middleware(['auth:api']);
-
+Route::resource('/users', UserController::class);
 
 Route::name('manager.')->prefix('adm/')->middleware(['auth:api'])->group(function () {
     Route::resource('/profiles', AclProfileController::class);
 });
 
-Route::name('client.')->prefix('cli/')->middleware(['auth:api'])->group(function () {
-    //
-});
+Route::resource('wf/ctl-process-hierarchies', CtlProcessHierarchyController::class, [
+    'parameters' => ['ctl-process-hierarchies' => 'hierarchy'],
+    'name' => 'api.hierarchy'
+])->middleware(['auth:api']);

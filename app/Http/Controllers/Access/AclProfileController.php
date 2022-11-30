@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Access;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\CrudAPIController;
-use App\Http\Requests\AclProfileRequest;
+use App\Http\Requests\Access\AclProfileRequest;
 use App\Repositories\Access\AclProfile;
 
 class AclProfileController extends Controller
