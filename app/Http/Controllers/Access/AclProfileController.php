@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Access;
 
 use App\Http\Controllers\Traits\CrudAPIController;
 use App\Http\Requests\AclProfileRequest;
-use App\Repositories\AclProfileRepository;
-use Illuminate\Http\Request;
+use App\Repositories\Access\AclProfile;
 
 class AclProfileController extends Controller
 {
     use CrudAPIController;
 
-    public function __construct(AclProfileRepository $repository)
+    public function __construct(AclProfile $repository)
     {
         $this->repository = $repository;
         $this->formRequest = AclProfileRequest::class;

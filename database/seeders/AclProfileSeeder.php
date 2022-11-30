@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AclProfile;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Access\AclProfile;
 use Illuminate\Database\Seeder;
 
 class AclProfileSeeder extends Seeder

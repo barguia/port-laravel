@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CtlTaskState;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Workflow\CtlTaskState;
 use Illuminate\Database\Seeder;
 
 class CtlTaskStateSeeder extends Seeder

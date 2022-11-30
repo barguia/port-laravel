@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Workflow;
 
-use App\Models\CtlTask;
-use App\Models\PcoTask;
+use App\Models\Workflow\CtlTask;
+use App\Models\Workflow\PcoTask as PcoTaskModel;
 use Illuminate\Support\Facades\Auth;
 
-class PcoTaskRepository
+class PcoTask
 {
     protected $model;
-    private PcoProcessRepository $processRepository;
+    private PcoProcess $processRepository;
 
     public function __construct()
     {
-        $this->model = PcoTask::class;
-        $this->processRepository = new PcoProcessRepository();
+        $this->model = PcoTaskModel::class;
+        $this->processRepository = new PcoProcess();
     }
 
-    public function create($peopleId, CtlTask $task): PcoTask
+    public function create($peopleId, CtlTask $task): PcoTaskModel
     {
         $newTask = $this->model->create([
             'ctl_task_id' => $task->id,

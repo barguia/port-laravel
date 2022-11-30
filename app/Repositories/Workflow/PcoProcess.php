@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Workflow;
 
-use App\Models\PcoProcess;
-use App\Models\PcoTask;
+use App\Models\Workflow\PcoProcess as PcoProcessModel;
+use App\Models\Workflow\PcoTask;
 
-class PcoProcessRepository
+class PcoProcess
 {
     protected $model;
 
     public function __construct()
     {
-        $this->model = PcoProcess::class;
+        $this->model = PcoProcessModel::class;
     }
 
-    public function create(array $data): PcoProcess
+    public function create(array $data): PcoProcessModel
     {
         $process = $this->model->create($data);
         $this->verifyCreateProcess(null, $process);
@@ -22,7 +22,7 @@ class PcoProcessRepository
         return $process;
     }
 
-    private function getOpenProcess(?PcoTask $pcoTask = null, ?PcoProcess $process = null)
+    private function getOpenProcess(?PcoTask $pcoTask = null, ?PcoProcessModel $process = null)
     {
         if ($pcoTask) {
             $ctlProcessId = $pcoTask->ctlTask->ctl_process_id;
@@ -38,7 +38,7 @@ class PcoProcessRepository
             ->first();
     }
 
-    public function verifyCreateProcess(?PcoTask $pcoTask = null, ?PcoProcess $process = null): void
+    public function verifyCreateProcess(?PcoTask $pcoTask = null, ?PcoProcessModel $process = null): void
     {
         $openProcess = $this->getOpenProcess($pcoTask, $process);
         if (!$openProcess) {

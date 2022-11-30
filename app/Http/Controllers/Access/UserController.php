@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Access;
 
 use App\Http\Controllers\Traits\CrudAPIController;
 use App\Http\Requests\UserRequest;
-use App\Repositories\UserRepository;
+use App\Repositories\Access\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     use CrudAPIController;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(User $repository)
     {
         $this->repository = $repository;
         $this->formRequest = UserRequest::class;

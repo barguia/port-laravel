@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\AclProfileController;
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Access\AclProfileController;
+use App\Http\Controllers\Access\AuthController;
+use App\Http\Controllers\Access\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*

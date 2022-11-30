@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Access;
 
-use App\Models\User;
+use App\Models\User as UserModel;
+use App\Repositories\AbstractCRUDRepository;
 use Illuminate\Http\Response;
 
-class UserRepository extends AbstractCRUDRepository
+class User extends AbstractCRUDRepository
 {
     public function __construct()
     {
-        $this->model = app(User::class);
+        $this->model = app(UserModel::class);
     }
 
     public function create(array $data): Response

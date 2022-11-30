@@ -2,8 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\AclProfile;
-use App\Models\User;
+use App\Models\Access\AclProfile;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\TestesCrud;
 use Tests\Feature\Traits\UserAutenticado;
