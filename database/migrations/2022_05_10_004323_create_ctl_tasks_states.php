@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ctl_tasks_states', function (Blueprint $table) {
             $table->id();
             $table->string('state')->unique();
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

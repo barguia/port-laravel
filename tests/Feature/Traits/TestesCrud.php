@@ -5,10 +5,10 @@ namespace Tests\Feature\Traits;
 trait TestesCrud
 {
     protected $rota;
-    protected $model;
+    protected $repository;
+
     protected $dadosCreate = array();
     protected $dadosUpdate = array();
-    protected $modelObject;
 
     public function testUsuarioNaoAutenticadoNaoPodeAcessarIndex()
     {
@@ -47,7 +47,7 @@ trait TestesCrud
      */
     public function testUsuarioEnviouDadosObrigatoriosEPodeAcessarStore(): array
     {
-        $response = $this->actingAs($this->user, 'api')->post($this->rota, $this->dadosCreate);
+        $response = $this->actingAs($this->user, 'api')->post($this->rota, $this->dadosCreate, $this->headers);
         $response->assertStatus(201);
         return $response->json();
     }

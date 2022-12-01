@@ -14,6 +14,7 @@ class CtlProcess extends Model
         'process',
         'ctl_process_hierarchy_id',
         'ctl_process_id',
+        'user_id',
     ];
 
     public function subProcess(): HasMany

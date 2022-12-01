@@ -40,9 +40,8 @@ trait UserAutenticado
 
     private function setHeadersComAutenticacao(): void
     {
-        $headers = array();
-        $headers['Authorization'] = 'Bearer ' . $this->user->createToken($this->user->email)->accessToken;
-        $headers['Accept'] = 'application/json';
-        $this->headers = $headers;
+        $this->headers = array();
+        $this->headers['Authorization'] = 'Bearer ' . $this->user->createToken($this->user->email)->accessToken;
+        $this->headers['Accept'] = 'application/json';
     }
 }

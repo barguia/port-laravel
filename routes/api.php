@@ -3,6 +3,7 @@
 use App\Http\Controllers\Access\AclProfileController;
 use App\Http\Controllers\Access\AuthController;
 use App\Http\Controllers\Access\UserController;
+use App\Http\Controllers\Workflow\CtlProcessController;
 use App\Http\Controllers\Workflow\CtlProcessHierarchyController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,13 +23,22 @@ Route::get('/logout', [AuthController::class, 'logout'])
     ->middleware(['auth:api'])
     ->name('api.logout');
 
-Route::resource('/users', UserController::class);
+Route::resource('/users', UserController::class)
+    ->middleware(['auth:api']);
+
+Route::post('/register', [UserController::class, 'store'])->name('api.register');
+
 
 Route::name('manager.')->prefix('adm/')->middleware(['auth:api'])->group(function () {
     Route::resource('/profiles', AclProfileController::class);
 });
 
-Route::resource('wf/ctl-process-hierarchies', CtlProcessHierarchyController::class, [
+Route::resource('/wf/ctl-process-hierarchies', CtlProcessHierarchyController::class, [
     'parameters' => ['ctl-process-hierarchies' => 'hierarchy'],
     'name' => 'api.hierarchy'
+])->middleware(['auth:api']);
+
+Route::resource('/wf/ctl-process', CtlProcessController::class, [
+    'parameters' => ['ctl-process' => 'process'],
+    'name' => 'api.process'
 ])->middleware(['auth:api']);

@@ -21,10 +21,12 @@ class CtlProcessHierarchyTest extends TestCase
 
         $this->dadosCreate = [
             'hierarchy' => $this->faker->unique()->name,
+            'depth' => rand(0, 1000),
         ];
 
         $this->dadosUpdate = [
             'hierarchy' => $this->faker->unique()->name,
+            'depth' => rand(0, 1000),
         ];
     }
 }

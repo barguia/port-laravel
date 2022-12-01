@@ -4,7 +4,7 @@ namespace App\Http\Requests\Workflow;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CtlProcessHierarchyRequest extends FormRequest
+class CtlTaskStateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CtlProcessHierarchyRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,13 +24,7 @@ class CtlProcessHierarchyRequest extends FormRequest
     public function rules()
     {
         return [
-            'hierarchy' => [
-                'required',
-                'min:3',
-                'max:255',
-                'unique:ctl_process_hierarchies,hierarchy,id,'.$this->route('hierarchy')
-            ],
-            'depth' => 'required|numeric|min:0',
+            //
         ];
     }
 }

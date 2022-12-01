@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('process')->unique();
             $table->foreignId('ctl_process_hierarchy_id')->constrained('ctl_process_hierarchies')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

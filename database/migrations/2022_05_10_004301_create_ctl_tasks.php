@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('task');
             $table->foreignId('ctl_process_id')->nullable()->constrained('ctl_process')->cascadeOnDelete();
             $table->unique(['task', 'ctl_process_id']);
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

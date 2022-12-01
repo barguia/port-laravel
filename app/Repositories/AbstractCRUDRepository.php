@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AbstractCRUDRepository
 {
@@ -34,6 +35,7 @@ class AbstractCRUDRepository
     public function create(array $data): Response
     {
         try {
+            $data['user_id'] = Auth::user()->id ?? null;
             return response(
                 [
                     'data' => $this->model->create($data),
