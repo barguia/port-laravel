@@ -31,4 +31,14 @@ class PcoObjectTest extends TestCase
             'description' => $this->faker->name,
         ];
     }
+
+    /**
+     * @depends testUsuarioAutenticadoEnviouTiposDadosCorretosEPodeAcessarUpdate
+     */
+    public function testUsuarioAutenticadoNaoPodeAcessarDelete(array $dados): void
+    {
+        $response = $this->actingAs($this->user, 'api')
+            ->delete($this->rota . $dados['data']['id'], [], $this->headers);
+        $response->assertStatus(405);
+    }
 }
