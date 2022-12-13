@@ -22,20 +22,34 @@ class PcoProcess
         return $process;
     }
 
+    private function finishProcess(PcoProcessModel $process): void
+    {
+        $process->finalized_at = date('Y-m-d H:i:s');
+        $process->update();
+    }
+
     private function getOpenProcess(?PcoTask $pcoTask = null, ?PcoProcessModel $process = null)
     {
         if ($pcoTask) {
             $ctlProcessId = $pcoTask->ctlTask->ctl_process_id;
-            $pcoPersonId = $pcoTask->pco_person_id;
         } else {
             $ctlProcessId = $process->ctlProcess->macroProcess->id ?? null;
-            $pcoPersonId = $process->pco_person_id;
         }
 
         return $this->model->where('ctl_process_id', $ctlProcessId)
-            ->where('pco_person_id', $pcoPersonId)
             ->whereNull('finalized_at')
             ->first();
+    }
+
+    private function getOpenRelatedItems(int $pcoProcessId): int
+    {
+        $process = $this->model->where('pco_process_id', $pcoProcessId)
+            ->whereNull('finalized_at')
+            ->count();
+        $tasks = PcoTask::where('pco_process_id', $pcoProcessId)
+            ->whereNull('finalized_at')
+            ->count();
+        return $process + $tasks;
     }
 
     public function verifyCreateProcess(?PcoTask $pcoTask = null, ?PcoProcessModel $process = null): void
@@ -72,6 +86,13 @@ class PcoProcess
             $pcoTask->pco_process_id = $openProcess->id;
         } else {
             $process->pco_process_id = $openProcess->id;
+        }
+    }
+
+    public function verifyFinishProcess($pcoProcess): void
+    {
+        if ($this->getOpenRelatedItems($pcoProcess->id) == 0) {
+            $this->finishProcess($pcoProcess);
         }
     }
 }

@@ -47,7 +47,8 @@ trait TestesCrud
      */
     public function testUsuarioEnviouDadosObrigatoriosEPodeAcessarStore(): array
     {
-        $response = $this->actingAs($this->user, 'api')->post($this->rota, $this->dadosCreate, $this->headers);
+        $response = $this->actingAs($this->user, 'api')
+            ->post($this->rota, $this->dadosCreate, $this->headers);
         $response->assertStatus(201);
         return $response->json();
     }

@@ -22,10 +22,12 @@ class CtlProcessTest extends TestCase
         $processHierarchy = CtlProcessHierarchy::first() ?? null;
 
         if ($processHierarchy === null) {
-            $processHierarchy = CtlProcessHierarchy::create([
-                'hierarchy' => $this->faker->name(),
-                'depth' => rand(0, 100),
-            ]);
+            $processHierarchy = CtlProcessHierarchy::create(
+                [
+                    'hierarchy' => $this->faker->name(),
+                    'depth' => rand(0, 100),
+                ]
+            );
         }
 
         $this->dadosCreate = [

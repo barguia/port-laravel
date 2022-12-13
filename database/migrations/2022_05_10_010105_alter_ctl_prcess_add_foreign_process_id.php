@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('ctl_process', function(Blueprint $table) {
+        Schema::table('ctl_process', function (Blueprint $table) {
             $table->foreignId('ctl_process_id')->nullable()
                 ->after('id')->constrained('ctl_process')
                 ->cascadeOnDelete();
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('ctl_process', function(Blueprint $table) {
+        Schema::table('ctl_process', function (Blueprint $table) {
 
             if (DB::getDriverName() !== 'sqlite') {
                 $table->dropForeign(['ctl_process_id']);
