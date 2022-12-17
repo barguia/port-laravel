@@ -24,7 +24,8 @@ class CtlTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'task' => 'required|string|unique:ctl_tasks,task,'.$this->route('task'),
+            'ctl_process_id' => 'required|numeric|exists:ctl_process,id'
         ];
     }
 }

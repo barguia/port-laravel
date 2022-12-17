@@ -5,6 +5,7 @@ use App\Http\Controllers\Access\AuthController;
 use App\Http\Controllers\Access\UserController;
 use App\Http\Controllers\Workflow\CtlProcessController;
 use App\Http\Controllers\Workflow\CtlProcessHierarchyController;
+use App\Http\Controllers\Workflow\CtlTaskController;
 use App\Http\Controllers\Workflow\PcoObjecjtController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,4 +48,9 @@ Route::name('workflow.')->middleware(['auth:api'])->prefix('wf/')->group(functio
         'parameters' => ['pco-objects' => 'object'],
         'name' => 'object'
     ])->except(['create', 'edit', 'destroy']);
+
+    Route::resource('/ctl-tasks', CtlTaskController::class, [
+        'parameters' => ['ctl-tasks' => 'task'],
+        'name' => 'ctrl-task'
+    ]);
 });

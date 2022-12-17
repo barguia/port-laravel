@@ -9,10 +9,10 @@ class CtlTask extends Model
 {
     protected $table = 'ctl_tasks';
 
-    public $fillable = array([
+    public $fillable = array(
         'task',
         'ctl_process_id'
-    ]);
+    );
 
     public function process(): BelongsTo
     {
