@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
             'id' => 'nullable|exists:users,id',
             'name' => 'required|string|max:55',
             'email' => 'required|email|unique:users,email,'.$this->route('user'),
-            'password' => 'required|confirmed',
+            'password' => 'nullable|confirmed',
         ];
     }
 

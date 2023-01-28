@@ -18,11 +18,9 @@ class UserController extends Controller
         $this->formRequest = UserRequest::class;
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $data = $request->all();
-        $this->dataValidation($data);
-        $data['password'] = bcrypt($data['password']);
         return $this->repository->update($data, $id);
     }
 }
