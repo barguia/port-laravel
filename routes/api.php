@@ -7,6 +7,7 @@ use App\Http\Controllers\Workflow\CtlProcessController;
 use App\Http\Controllers\Workflow\CtlProcessHierarchyController;
 use App\Http\Controllers\Workflow\CtlTaskController;
 use App\Http\Controllers\Workflow\PcoObjecjtController;
+use App\Http\Controllers\Workflow\PcoTaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,5 +53,10 @@ Route::name('workflow.')->middleware(['auth:api'])->prefix('wf/')->group(functio
     Route::resource('/ctl-tasks', CtlTaskController::class, [
         'parameters' => ['ctl-tasks' => 'task'],
         'name' => 'ctrl-task'
+    ]);
+
+    Route::resource('/pco-tasks', PcoTaskController::class, [
+        'parameters' => ['pco-tasks' => 'task'],
+        'name' => 'pco-task'
     ]);
 });

@@ -4,9 +4,11 @@ namespace App\Repositories\Workflow;
 
 use App\Models\Workflow\CtlTask;
 use App\Models\Workflow\PcoTask as PcoTaskModel;
+use App\Repositories\AbstractCRUDRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class PcoTask
+class PcoTask extends AbstractCRUDRepository
 {
     protected $model;
     private PcoProcess $processRepository;
@@ -14,15 +16,16 @@ class PcoTask
 
     public function __construct()
     {
-        $this->model = PcoTaskModel::class;
+        $this->model = app(PcoTaskModel::class);
         $this->processRepository = new PcoProcess();
         $this->treatmentRepository = new PcoTreatment();
     }
 
-    public function create(int $ctlTaskId): PcoTaskModel
+    public function newTask(Request $request): PcoTaskModel
     {
         $newTask = $this->model->create([
-            'ctl_task_id' => $ctlTaskId,
+            'ctl_task_id' => $request->ctl_task_id,
+            'pco_object_id' => $request->pco_object_id,
             'user_id' => Auth::user()->id,
         ]);
 
@@ -44,7 +47,7 @@ class PcoTask
 
     public function transfer(int $userId): bool
     {
-        $this->pcoTask->user_tratamento_id = Auth::user()->id;
+        $this->pcoTask->user_tratment_id = $userId;
         $this->pcoTask->update();
         return true;
     }
@@ -66,7 +69,7 @@ class PcoTask
             $this->pcoTask->finalized_at = date('Y-m-d H:i:s');
             $this->pcoTask->update();
 
-            $this->processRepository->verifyFinishProcess($this->pcoTas->pcoProcess);
+            $this->processRepository->verifyFinishProcess($this->pcoTask->pcoProcess);
         }
     }
 }

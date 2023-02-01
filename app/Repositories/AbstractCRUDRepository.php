@@ -14,10 +14,11 @@ class AbstractCRUDRepository
         return $this->model->find($id);
     }
 
-    public function index($with): Response
+    public function index(array $with = []): Response
     {
         try {
             $records = $this->model->with($with)->get();
+
             return response(
                 [
                     'data' => $records,
@@ -26,7 +27,6 @@ class AbstractCRUDRepository
                 200
             );
 
-//            return response(['data' => [], 'message' => 'Records not found.'], 404);
         } catch (\Exception $error) {
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
