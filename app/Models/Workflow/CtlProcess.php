@@ -26,4 +26,9 @@ class CtlProcess extends Model
     {
         return $this->belongsTo(self::class, 'ctl_process_id');
     }
+
+    public function hierarchy(): BelongsTo
+    {
+        return $this->belongsTo(CtlProcessHierarchy::class, 'ctl_process_hierarchy_id');
+    }
 }

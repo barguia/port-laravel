@@ -14,10 +14,10 @@ class AbstractCRUDRepository
         return $this->model->find($id);
     }
 
-    public function index(): Response
+    public function index($with): Response
     {
         try {
-            $records = $this->model->all();
+            $records = $this->model->with($with)->get();
             return response(
                 [
                     'data' => $records,
@@ -79,7 +79,7 @@ class AbstractCRUDRepository
         }
     }
 
-    public function show($id): Response
+    public function show($id, array $with = []): Response
     {
         try {
             $data = $this->model->find($id);

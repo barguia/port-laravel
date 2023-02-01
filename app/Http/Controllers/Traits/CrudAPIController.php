@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 trait CrudAPIController
 {
+    protected $with = [];
     protected $repository;
     protected $formRequest;
 
@@ -28,7 +29,7 @@ trait CrudAPIController
      */
     public function index()
     {
-        return $this->repository->index();
+        return $this->repository->index($this->with);
     }
 
     /**
@@ -51,7 +52,7 @@ trait CrudAPIController
      */
     public function show($id)
     {
-        return $this->repository->show($id);
+        return $this->repository->show($id, $this->with);
     }
 
     /**

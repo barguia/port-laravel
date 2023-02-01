@@ -28,7 +28,7 @@ class CtlProcessRequest extends FormRequest
                 'required',
                 'min:3',
                 'max:255',
-                'unique:ctl_process,process,id'.$this->route('process')
+                'unique:ctl_process,process,'.$this->route('process')
             ],
             'ctl_process_hierarchy_id' => [
                 'required',

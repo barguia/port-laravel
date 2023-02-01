@@ -15,5 +15,6 @@ class CtlProcessController extends Controller
     {
         $this->repository = $repository;
         $this->formRequest = CtlProcessRequest::class;
+        $this->with = ['hierarchy', 'macroProcess'];
     }
 }
