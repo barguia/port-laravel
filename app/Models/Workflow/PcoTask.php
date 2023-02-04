@@ -12,13 +12,14 @@ class PcoTask extends Model
 
     public $fillable = array(
         'ctl_task_id',
-        'pco_person_id',
-        'pco_process_id'
+        'pco_object_id',
+        'pco_process_id',
+        'user_id',
     );
 
-    public function person(): BelongsTo
+    public function object(): BelongsTo
     {
-        return $this->belongsTo(PcoObject::class, 'pco_person_id');
+        return $this->belongsTo(PcoObject::class, 'pco_object_id');
     }
 
     public function task(): BelongsTo

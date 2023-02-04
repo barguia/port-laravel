@@ -13,8 +13,9 @@ class PcoProcess extends Model
 
     public $fillable = array(
         'ctl_process_id',
-        'pco_people_life_id',
-        'pco_process_id'
+        'pco_object_id',
+        'pco_process_id',
+        'user_id',
     );
 
     public function object(): BelongsTo

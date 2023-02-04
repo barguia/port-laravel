@@ -5,10 +5,11 @@ namespace App\Repositories\Workflow;
 use App\Models\Workflow\CtlTask;
 use App\Models\Workflow\PcoTask as PcoTaskModel;
 use App\Repositories\AbstractCRUDRepository;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class PcoTask extends AbstractCRUDRepository
+class PcoTask
 {
     protected $model;
     private PcoProcess $processRepository;
@@ -21,18 +22,44 @@ class PcoTask extends AbstractCRUDRepository
         $this->treatmentRepository = new PcoTreatment();
     }
 
-    public function newTask(Request $request): PcoTaskModel
+    private function responseHttp($data, int $statusCode = 200, String $message = ""): Response
     {
-        $newTask = $this->model->create([
-            'ctl_task_id' => $request->ctl_task_id,
-            'pco_object_id' => $request->pco_object_id,
-            'user_id' => Auth::user()->id,
-        ]);
+        return response(
+            [
+                'data' => $data,
+                'message' => $message
+            ],
+            $statusCode
+        );
+    }
 
-        $this->processRepository->verifyCreateProcess($newTask);
+    public function index(array $with = []): Response
+    {
+        try {
+            $records = $this->model->with($with)->get();
+            return $this->responseHttp($records, 200, 'Records found successfully.');
+        } catch (\Exception $error) {
+            return response(['message' => 'Something wrong happen. Try again.'], 500);
+        }
+    }
 
-        $newTask->update();
-        return $newTask;
+    public function newTask(Request $request): Response
+    {
+        try {
+            $newTask = $this->model->create([
+                'ctl_task_id' => $request->ctl_task_id,
+                'pco_object_id' => $request->pco_object_id,
+                'user_id' => Auth::user()->id,
+            ]);
+
+            $this->processRepository->verifyCreateProcess($newTask);
+
+            $newTask->update();
+            return $this->responseHttp($newTask);
+        } catch (\Exception $error) {
+            dd($error);
+            return response(['message' => 'Something wrong happen. Try again.'], 500);
+        }
     }
 
     public function adopt(): bool

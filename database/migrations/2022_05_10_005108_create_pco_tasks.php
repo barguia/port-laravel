@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('pco_object_id')->constrained('pco_objects')->cascadeOnDelete();
             $table->foreignId('ctl_task_id')->constrained('ctl_tasks')
                 ->cascadeOnDelete();
-            $table->foreignId('pco_process_id')->constrained('pco_process')
+            $table->foreignId('pco_process_id')->nullable()->constrained('pco_process')
                 ->cascadeOnDelete();
             $table->unsignedInteger('aging_in_days')->nullable();
             $table->foreignId('user_id')->constrained('users')

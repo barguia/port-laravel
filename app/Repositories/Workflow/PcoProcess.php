@@ -4,6 +4,7 @@ namespace App\Repositories\Workflow;
 
 use App\Models\Workflow\PcoProcess as PcoProcessModel;
 use App\Models\Workflow\PcoTask;
+use Illuminate\Support\Facades\Auth;
 
 class PcoProcess
 {
@@ -11,11 +12,12 @@ class PcoProcess
 
     public function __construct()
     {
-        $this->model = PcoProcessModel::class;
+        $this->model = app(PcoProcessModel::class);
     }
 
     public function create(array $data): PcoProcessModel
     {
+        $data['user_id'] = Auth::user()->id;
         $process = $this->model->create($data);
         $this->verifyCreateProcess(null, $process);
 
@@ -31,7 +33,7 @@ class PcoProcess
     private function getOpenProcess(?PcoTask $pcoTask = null, ?PcoProcessModel $process = null)
     {
         if ($pcoTask) {
-            $ctlProcessId = $pcoTask->ctlTask->ctl_process_id;
+            $ctlProcessId = $pcoTask->task->ctl_process_id;
         } else {
             $ctlProcessId = $process->ctlProcess->macroProcess->id ?? null;
         }
@@ -60,15 +62,15 @@ class PcoProcess
 
             if ($pcoTask) {
                 $data = [
-                    'ctl_process_id' => $pcoTask->ctlTask->ctl_process_id,
-                    'pco_person_id' => $pcoTask->pco_person_id,
+                    'ctl_process_id' => $pcoTask->task->ctl_process_id,
+                    'pco_object_id' => $pcoTask->pco_object_id,
                 ];
             } else {
                 $ctlMacroProcessId = $process->ctlProcess->macroProcess->id ?? null;
                 if ($ctlMacroProcessId) {
                     $data = [
                         'ctl_process_id' => $ctlMacroProcessId,
-                        'pco_person_id' => $process->pco_person_id,
+                        'pco_object_id' => $process->pco_object_id,
                     ];
                 }
             }
