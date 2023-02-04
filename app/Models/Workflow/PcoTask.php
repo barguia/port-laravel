@@ -41,4 +41,9 @@ class PcoTask extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function userTreatment(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_treatment_id');
+    }
 }

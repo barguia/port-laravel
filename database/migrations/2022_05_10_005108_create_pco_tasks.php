@@ -23,6 +23,8 @@ return new class extends Migration
             $table->unsignedInteger('aging_in_days')->nullable();
             $table->foreignId('user_id')->constrained('users')
                 ->cascadeOnDelete();
+            $table->foreignId('user_treatment_id')->nullable()->constrained('users')
+                ->cascadeOnDelete();
             $table->timestamps();
             $table->timestamp('finalized_at')->nullable();
         });
