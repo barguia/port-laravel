@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pco_objects', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->unsignedInteger('aging_in_days')->nullable();
+            $table->unsignedInteger('aging')->nullable();
             $table->foreignId('user_id')->constrained('users')
                 ->cascadeOnDelete();
             $table->timestamps();

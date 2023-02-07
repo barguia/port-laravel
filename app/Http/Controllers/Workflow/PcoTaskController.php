@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Workflow;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\CrudAPIController;
 use App\Http\Requests\Workflow\PcoTaskRequest;
-use App\Repositories\Workflow\PcoTask as Repository;
+use App\Models\User;
+use App\Models\Workflow\PcoTask;
+use App\Repositories\Workflow\PcoTaskRepository as Repository;
 use Illuminate\Http\Response;
 
 class PcoTaskController extends Controller
@@ -26,15 +28,15 @@ class PcoTaskController extends Controller
         return $this->repository->newTask($request);
     }
 
-    public function adopt($pcoTaskId): Response
+    public function adopt(PcoTask $pcoTask): Response
     {
-        $repository = new Repository($pcoTaskId);
+        $repository = new Repository($pcoTask->id);
         return $repository->adopt();
     }
 
-    public function transfer($pcoTaskId, $userId): Response
+    public function transfer(PcoTask $pcoTask, User $user): Response
     {
-        $repository = new Repository($pcoTaskId);
-        return $repository->transfer($userId);
+        $repository = new Repository($pcoTask->id);
+        return $repository->transfer($user->id);
     }
 }

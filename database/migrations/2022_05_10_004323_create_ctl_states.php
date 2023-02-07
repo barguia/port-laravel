@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ctl_tasks_states', function (Blueprint $table) {
+        Schema::create('ctl_states', function (Blueprint $table) {
             $table->id();
             $table->string('state')->unique();
             $table->foreignId('user_id')->nullable()->constrained('users');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ctl_tasks_states');
+        Schema::dropIfExists('ctl_states');
     }
 };

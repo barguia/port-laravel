@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Workflow;
 
-use App\Repositories\Workflow\PcoObject;
+use App\Repositories\Workflow\PcoObjectRepository;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\TestesCrud;
 use Tests\Feature\Traits\UserAutenticado;
@@ -21,7 +21,7 @@ class PcoObjectTest extends TestCase
         parent::setUp();
         $this->setUserAutenticado();
         $this->rota = "/api/wf/pco-objects/";
-        $this->repository = app(PcoObject::class);
+        $this->repository = app(PcoObjectRepository::class);
 
         $this->dadosCreate = [
             'description' => $this->faker->name,

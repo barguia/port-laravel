@@ -6,7 +6,7 @@ use App\Models\Workflow\PcoProcess as PcoProcessModel;
 use App\Models\Workflow\PcoTask;
 use Illuminate\Support\Facades\Auth;
 
-class PcoProcess
+class PcoProcessRepository
 {
     protected $model;
 
@@ -33,7 +33,7 @@ class PcoProcess
     private function getOpenProcess(?PcoTask $pcoTask = null, ?PcoProcessModel $process = null)
     {
         if ($pcoTask) {
-            $ctlProcessId = $pcoTask->task->ctl_process_id;
+            $ctlProcessId = $pcoTask->ctlTask->ctl_process_id;
         } else {
             $ctlProcessId = $process->ctlProcess->macroProcess->id ?? null;
         }
@@ -62,7 +62,7 @@ class PcoProcess
 
             if ($pcoTask) {
                 $data = [
-                    'ctl_process_id' => $pcoTask->task->ctl_process_id,
+                    'ctl_process_id' => $pcoTask->ctlTask->ctl_process_id,
                     'pco_object_id' => $pcoTask->pco_object_id,
                 ];
             } else {

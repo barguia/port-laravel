@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Workflow\CtlTaskState;
+use App\Models\Workflow\CtlState;
 use Illuminate\Database\Seeder;
 
 class CtlTaskStateSeeder extends Seeder
@@ -16,7 +16,7 @@ class CtlTaskStateSeeder extends Seeder
     {
         $taskStates = ['To do', 'In progress', 'impediment'];
         foreach ($taskStates as $taskState) {
-            CtlTaskState::firstOrCreate([
+            CtlState::firstOrCreate([
                 'state' => $taskState
             ]);
         }

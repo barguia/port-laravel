@@ -8,28 +8,37 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PcoTask
+class PcoTaskRepository
 {
     protected $model;
     private array $with = [
-        "object",
-        "task",
-        "taskState",
-        "process",
-        "user",
+        "pcoObject",
+        "ctlTask",
+        "pcoState",
+        "pcoProcess",
+        "registeredBy",
         "userTreatment",
     ];
-    private PcoProcess $processRepository;
-    private $pcoTask = null;
+    private PcoProcessRepository $processRepository;
+    private PcoTaskModel | null $pcoTask = null;
+    private PcoStateRepository $stateRepository;
+    private PcoTreatmentRepository $treatmentRepository;
 
     public function __construct(?int $pcoTaskId = null)
     {
         $this->model = app(PcoTaskModel::class);
-        $this->processRepository = new PcoProcess();
-        $this->treatmentRepository = new PcoTreatment();
+        $this->processRepository = new PcoProcessRepository();
+        $this->treatmentRepository = new PcoTreatmentRepository();
+        $this->stateRepository = new PcoStateRepository();
+
         if ($pcoTaskId) {
-            $this->pcoTask = $this->model->with($this->with)->find($pcoTaskId);
+            $this->setTaskObject($pcoTaskId);
         }
+    }
+
+    private function setTaskObject(int $pcoTaskId): void
+    {
+        $this->pcoTask = $this->model->with($this->with)->find($pcoTaskId);
     }
 
     private function responseHttp($data, String $message = "", ?int $statusCode = 200): Response
@@ -43,12 +52,13 @@ class PcoTask
         );
     }
 
-    public function index(array $with = []): Response
+    public function index(): Response
     {
         try {
-            $records = $this->model->with($with)->get();
+            $records = $this->model->with($this->with)->get();
             return $this->responseHttp($records, 'Records found successfully.');
         } catch (\Exception $error) {
+            dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }
@@ -62,13 +72,14 @@ class PcoTask
                 'pco_object_id' => $request->pco_object_id,
                 'user_id' => Auth::user()->id,
             ]);
-
+            $newTask->pco_state_id = $this->stateRepository->startStateDefault($newTask);
             $this->processRepository->verifyCreateProcess($newTask);
 
             $newTask->update();
             DB::commit();
             return $this->responseHttp($newTask);
         } catch (\Exception $error) {
+            dd($error);
             DB::rollBack();
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
@@ -88,7 +99,7 @@ class PcoTask
     {
         $this->pcoTask->user_treatment_id = $userId;
         $this->pcoTask->update();
-        #$task = $this->model->with($this->with)->find($this->pcoTask->id);
+        $this->setTaskObject($this->pcoTask->id);
         return $this->responseHttp($this->pcoTask);
     }
 

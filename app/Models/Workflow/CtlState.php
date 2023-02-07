@@ -4,8 +4,8 @@ namespace App\Models\Workflow;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CtlTaskState extends Model
+class CtlState extends Model
 {
-    protected $table = 'ctl_tasks_states';
+    protected $table = 'ctl_states';
     public $fillable = array('state');
 }

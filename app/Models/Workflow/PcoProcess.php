@@ -38,7 +38,7 @@ class PcoProcess extends Model
         return $this->HasMany(PcoProcess::class, 'pco_process_id');
     }
 
-    public function user(): BelongsTo
+    public function registeredBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

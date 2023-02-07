@@ -20,7 +20,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->foreignId('pco_process_id')->nullable()->constrained('pco_process')
                 ->cascadeOnDelete();
-            $table->unsignedInteger('aging_in_days')->nullable();
+            $table->unsignedBigInteger('pco_state_id')->nullable();
+            $table->unsignedInteger('aging')->nullable();
             $table->foreignId('user_id')->constrained('users')
                 ->cascadeOnDelete();
             $table->foreignId('user_treatment_id')->nullable()->constrained('users')

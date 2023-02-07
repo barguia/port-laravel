@@ -6,22 +6,19 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class PcoTreatment extends Model
+class PcoState extends Model
 {
-    protected $table = 'pco_tratamentos';
+    protected $table = 'pco_states';
 
     public $fillable = array(
-        'ctl_task_id',
+        'ctl_state_id',
+        'pco_object_id',
         'pco_task_id',
+        'user_id',
     );
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
     public function registeredBy(): BelongsTo
     {
-        return $this->belongsTo(CtlTask::class, 'ctl_task_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

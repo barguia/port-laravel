@@ -4,10 +4,10 @@ namespace App\Repositories\Workflow;
 
 use App\Repositories\AbstractCRUDRepository;
 
-class CtlProcess extends AbstractCRUDRepository
+class CtlTaskRepository extends AbstractCRUDRepository
 {
     public function __construct()
     {
-        $this->model = app(\App\Models\Workflow\CtlProcess::class);
+        $this->model = app(\App\Models\Workflow\CtlTask::class);
     }
 }

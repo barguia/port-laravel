@@ -17,27 +17,27 @@ class PcoTask extends Model
         'user_id',
     );
 
-    public function object(): BelongsTo
+    public function pcoObject(): BelongsTo
     {
         return $this->belongsTo(PcoObject::class, 'pco_object_id');
     }
 
-    public function task(): BelongsTo
+    public function ctlTask(): BelongsTo
     {
         return $this->belongsTo(CtlTask::class, 'ctl_task_id');
     }
 
-    public function taskState(): BelongsTo
+    public function pcoState(): BelongsTo
     {
-        return $this->belongsTo(PcoTaskState::class, 'pco_task_state_id');
+        return $this->belongsTo(PcoState::class, 'pco_state_id');
     }
 
-    public function process(): BelongsTo
+    public function pcoProcess(): BelongsTo
     {
         return $this->belongsTo(PcoProcess::class, 'pco_process_id');
     }
 
-    public function user(): BelongsTo
+    public function registeredBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

@@ -4,7 +4,7 @@ namespace App\Repositories\Workflow;
 
 use Illuminate\Support\Facades\Auth;
 
-class PcoTreatment
+class PcoTreatmentRepository
 {
     private $model;
     public function __construct()

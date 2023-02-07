@@ -3,7 +3,7 @@
 namespace Tests\Feature\Workflow;
 
 use App\Models\Workflow\CtlProcessHierarchy;
-use App\Repositories\Workflow\CtlProcess;
+use App\Repositories\Workflow\CtlProcessRepository;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\TestesCrud;
 use Tests\Feature\Traits\UserAutenticado;
@@ -18,7 +18,7 @@ class CtlProcessTest extends TestCase
         parent::setUp();
         $this->setUserAutenticado();
         $this->rota = "/api/wf/ctl-process/";
-        $this->repository = app(CtlProcess::class);
+        $this->repository = app(CtlProcessRepository::class);
         $processHierarchy = CtlProcessHierarchy::first() ?? null;
 
         if ($processHierarchy === null) {

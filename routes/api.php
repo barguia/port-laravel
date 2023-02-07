@@ -63,6 +63,6 @@ Route::name('workflow.')->middleware(['auth:api'])->prefix('wf/')->group(functio
     Route::get('/pco-tasks/{pco_task_id}/adopt', [PcoTaskController::class, 'adopt'])
         ->name('pco-task.adopt');
 
-    Route::get('/pco-tasks/{pco_task_id}/transfer/{user_id}', [PcoTaskController::class, 'transfer'])
+    Route::get('/pco-tasks/{pco_task}/transfer/{user}', [PcoTaskController::class, 'transfer'])
         ->name('pco-task.transfer');
 });
