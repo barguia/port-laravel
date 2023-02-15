@@ -2,7 +2,8 @@
 
 namespace Tests\Feature\Ecommerce;
 
-use App\Models\Workflow\CtlProcess;
+use App\Models\Ecommerce\CtlProcess;
+use App\Models\Ecommerce\CtlTask;
 use App\Repositories\Ecommerce\CtlProductRepository;
 use App\Repositories\Ecommerce\CtlTaskRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -22,9 +23,19 @@ class CtlProductTest extends TestCase
         $this->rota = "/api/wf/ctl-products/";
         $this->repository = app(CtlProductRepository::class);
 
+        $ctlTask = CtlTask::first();
+        if (!$ctlTask) {
+            $ctlTask = CtlTask::firstOrcreate([
+                'task' => $this->faker->unique()->name,
+                'ctl_process_id' => 1,
+            ]);
+        }
+
+
         $this->dadosCreate = [
             'product' => $this->faker->unique()->name,
             'description' => $this->faker->streetName,
+            'ctl_default_task_id' => $ctlTask->id ?? null,
             'price' => rand(0.01, 20000)
         ];
 
@@ -32,6 +43,7 @@ class CtlProductTest extends TestCase
         $this->dadosUpdate = [
             'product' => $this->faker->unique()->name,
             'description' => $this->faker->streetName,
+            'ctl_default_task_id' => $ctlTask->id ?? null,
             'price' => rand(0.01, 20000)
         ];
     }

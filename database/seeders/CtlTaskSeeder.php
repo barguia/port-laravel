@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Workflow\CtlProcess;
-use App\Models\Workflow\CtlTask;
+use App\Models\Ecommerce\CtlProcess;
+use App\Models\Ecommerce\CtlTask;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

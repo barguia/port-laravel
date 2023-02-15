@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models\Workflow;
+namespace App\Models\Ecommerce;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PcoOrder extends Model
 {
@@ -13,4 +14,9 @@ class PcoOrder extends Model
         'price',
         'user_id',
     );
+
+    public function ctlProduct(): BelongsTo
+    {
+        return $this->belongsTo(CtlProduct::class, 'ctl_product_id');
+    }
 }

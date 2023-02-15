@@ -25,7 +25,6 @@ class PcoOrderRequest extends FormRequest
     {
         return [
             'ctl_product_id' => 'required|numeric|exists:ctl_products,id',
-            'price' => 'required|numeric|min:0.01',
         ];
     }
 }

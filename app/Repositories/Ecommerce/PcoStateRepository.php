@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Ecommerce;
 
-use App\Models\Workflow\PcoTask as PcoTaskModel;
-use \App\Models\Workflow\PcoState as PcoStateModel;
+use App\Models\Ecommerce\PcoTask as PcoTaskModel;
+use \App\Models\Ecommerce\PcoState as PcoStateModel;
 use Illuminate\Support\Facades\Auth;
 
 class PcoStateRepository
@@ -22,7 +22,7 @@ class PcoStateRepository
         return $this->model->create([
             'user_id' => Auth::user()->id,
             'pco_task_id' => $task->id,
-            'pco_object_id' => $task->pco_object_id,
+            'pco_order_id' => $task->pco_order_id,
             'pco_last_task_state_id' => $task->pco_task_state_id ?? null,
             'ctl_state_id' => $ctlTaskStateId,
         ]);

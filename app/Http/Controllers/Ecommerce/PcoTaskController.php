@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\CrudAPIController;
 use App\Http\Requests\Ecommerce\PcoTaskRequest;
 use App\Models\User;
-use App\Models\Workflow\PcoTask;
+use App\Models\Ecommerce\PcoTask;
 use App\Repositories\Ecommerce\PcoTaskRepository as Repository;
 use Illuminate\Http\Response;
 

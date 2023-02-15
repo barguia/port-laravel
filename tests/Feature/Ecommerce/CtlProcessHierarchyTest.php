@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Ecommerce;
 
-use App\Models\Workflow\CtlProcessHierarchy;
+use App\Models\Ecommerce\CtlProcessHierarchy;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\TestesCrud;
 use Tests\Feature\Traits\UserAutenticado;

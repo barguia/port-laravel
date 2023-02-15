@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Ecommerce;
 
-use App\Models\Workflow\CtlProduct;
+use App\Models\Ecommerce\CtlProduct;
 use App\Repositories\Ecommerce\PcoOrderRepository;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\TestesCrud;

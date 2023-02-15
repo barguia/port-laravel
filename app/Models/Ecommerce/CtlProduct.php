@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Workflow;
+namespace App\Models\Ecommerce;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +14,7 @@ class CtlProduct extends Model
         'product',
         'description',
         'price',
+        'ctl_default_task_id',
         'user_id',
     ];
 }

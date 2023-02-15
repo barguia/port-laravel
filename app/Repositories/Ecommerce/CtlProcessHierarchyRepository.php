@@ -3,7 +3,7 @@
 namespace App\Repositories\Ecommerce;
 
 use App\Repositories\AbstractCRUDRepository;
-use App\Models\Workflow\CtlProcessHierarchy as Model;
+use App\Models\Ecommerce\CtlProcessHierarchy as Model;
 
 class CtlProcessHierarchyRepository extends AbstractCRUDRepository
 {

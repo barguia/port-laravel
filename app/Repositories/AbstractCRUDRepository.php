@@ -53,7 +53,8 @@ class AbstractCRUDRepository
     public function store(array $data): Response
     {
         try {
-            return response(['data' => $this->model->create($data)], 200);
+            $data['user_id'] = Auth::user()->id ?? null;
+            return response(['data' => $this->model->create($data)], 201);
         } catch (\Exception $error) {
             dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);

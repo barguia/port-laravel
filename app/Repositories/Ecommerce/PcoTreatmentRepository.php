@@ -9,7 +9,7 @@ class PcoTreatmentRepository
     private $model;
     public function __construct()
     {
-        $this->model = app(\App\Models\Workflow\PcoTreatment::class);
+        $this->model = app(\App\Models\Ecommerce\PcoTreatment::class);
     }
 
     public function create($pcoTask)

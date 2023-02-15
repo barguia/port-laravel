@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Ecommerce;
 
-use App\Models\Workflow\CtlProcess;
+use App\Models\Ecommerce\CtlProcess;
 use App\Repositories\Ecommerce\CtlTaskRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

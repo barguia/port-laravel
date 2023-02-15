@@ -32,7 +32,7 @@ return new class extends Migration
             if (DB::getDriverName() !== 'sqlite') {
                 $table->dropForeign(['ctl_process_id']);
             }
-
+            
             $table->dropColumn(['ctl_process_id']);
         });
     }

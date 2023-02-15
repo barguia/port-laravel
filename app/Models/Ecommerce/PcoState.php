@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Workflow;
+namespace App\Models\Ecommerce;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +12,7 @@ class PcoState extends Model
 
     public $fillable = array(
         'ctl_state_id',
-        'pco_object_id',
+        'pco_order_id',
         'pco_task_id',
         'user_id',
     );

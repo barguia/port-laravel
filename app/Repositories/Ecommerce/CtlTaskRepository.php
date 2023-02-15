@@ -8,6 +8,6 @@ class CtlTaskRepository extends AbstractCRUDRepository
 {
     public function __construct()
     {
-        $this->model = app(\App\Models\Workflow\CtlTask::class);
+        $this->model = app(\App\Models\Ecommerce\CtlTask::class);
     }
 }

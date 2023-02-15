@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Ecommerce;
 
-use App\Models\Workflow\CtlProduct;
+use App\Models\Ecommerce\CtlProduct;
 use App\Repositories\AbstractCRUDRepository;
 
 class CtlProductRepository extends AbstractCRUDRepository

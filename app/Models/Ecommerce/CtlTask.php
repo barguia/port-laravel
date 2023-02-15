@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Workflow;
+namespace App\Models\Ecommerce;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

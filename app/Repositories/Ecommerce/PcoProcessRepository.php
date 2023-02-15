@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Ecommerce;
 
-use App\Models\Workflow\PcoProcess as PcoProcessModel;
-use App\Models\Workflow\PcoTask;
+use App\Models\Ecommerce\PcoProcess as PcoProcessModel;
+use App\Models\Ecommerce\PcoTask;
 use Illuminate\Support\Facades\Auth;
 
 class PcoProcessRepository
@@ -63,14 +63,14 @@ class PcoProcessRepository
             if ($pcoTask) {
                 $data = [
                     'ctl_process_id' => $pcoTask->ctlTask->ctl_process_id,
-                    'pco_object_id' => $pcoTask->pco_object_id,
+                    'pco_order_id' => $pcoTask->pco_order_id,
                 ];
             } else {
                 $ctlMacroProcessId = $process->ctlProcess->macroProcess->id ?? null;
                 if ($ctlMacroProcessId) {
                     $data = [
                         'ctl_process_id' => $ctlMacroProcessId,
-                        'pco_object_id' => $process->pco_object_id,
+                        'pco_order_id' => $process->pco_order_id,
                     ];
                 }
             }

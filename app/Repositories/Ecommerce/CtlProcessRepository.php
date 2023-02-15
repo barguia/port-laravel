@@ -8,6 +8,6 @@ class CtlProcessRepository extends AbstractCRUDRepository
 {
     public function __construct()
     {
-        $this->model = app(\App\Models\Workflow\CtlProcess::class);
+        $this->model = app(\App\Models\Ecommerce\CtlProcess::class);
     }
 }

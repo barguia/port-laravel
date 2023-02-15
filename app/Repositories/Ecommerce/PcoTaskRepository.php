@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Ecommerce;
 
-use App\Models\Workflow\PcoTask as PcoTaskModel;
+use App\Models\Ecommerce\PcoOrder;
+use App\Models\Ecommerce\PcoTask as PcoTaskModel;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class PcoTaskRepository
 {
     protected $model;
     private array $with = [
-        "pcoObject",
+        "pcoOrder",
         "ctlTask",
         "pcoState",
         "pcoProcess",
@@ -63,25 +64,25 @@ class PcoTaskRepository
         }
     }
 
-    public function newTask(Request $request): Response
+    public function newTask(PcoOrder $order): void
     {
+        if (!$order || !$order->ctlProduct || !$order->ctlProduct->ctl_default_task_id) {
+            return;
+        }
+
         try {
-            DB::beginTransaction();
             $newTask = $this->model->create([
-                'ctl_task_id' => $request->ctl_task_id,
-                'pco_object_id' => $request->pco_object_id,
+                'ctl_task_id' => $order->ctlProduct->ctl_default_task_id,
+                'pco_order_id' => $order->id,
                 'user_id' => Auth::user()->id,
             ]);
             $newTask->pco_state_id = $this->stateRepository->startStateDefault($newTask);
             $this->processRepository->verifyCreateProcess($newTask);
 
             $newTask->update();
-            DB::commit();
-            return $this->responseHttp($newTask);
+
         } catch (\Exception $error) {
             dd($error);
-            DB::rollBack();
-            return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }
 

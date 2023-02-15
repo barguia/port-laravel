@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Workflow;
+namespace App\Models\Ecommerce;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;

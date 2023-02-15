@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Workflow\CtlProcessHierarchy;
+use App\Models\Ecommerce\CtlProcessHierarchy;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

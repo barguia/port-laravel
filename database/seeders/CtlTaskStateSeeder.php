@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Workflow\CtlState;
+use App\Models\Ecommerce\CtlState;
 use Illuminate\Database\Seeder;
 
 class CtlTaskStateSeeder extends Seeder
