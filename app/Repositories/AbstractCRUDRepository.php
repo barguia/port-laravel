@@ -28,6 +28,7 @@ class AbstractCRUDRepository
             );
 
         } catch (\Exception $error) {
+            dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }
@@ -54,6 +55,7 @@ class AbstractCRUDRepository
         try {
             return response(['data' => $this->model->create($data)], 200);
         } catch (\Exception $error) {
+            dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }
@@ -76,6 +78,7 @@ class AbstractCRUDRepository
 
             return response(['data' => '', 'message' => 'Record not found.'], 200);
         } catch (\Exception $error) {
+            dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }
@@ -90,6 +93,7 @@ class AbstractCRUDRepository
 
             return response(['data' => '', 'message' => 'Record not found.'], 404);
         } catch (\Exception $error) {
+            dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }
@@ -107,6 +111,7 @@ class AbstractCRUDRepository
 
             return $responseData;
         } catch (\Exception $error) {
+            dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }

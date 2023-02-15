@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('product')->unique();
             $table->string('description')->nullable();
             $table->float('price')->unsigned();
+            $table->foreignId('ctl_default_task_id')->nullable()->constrained('ctl_tasks');
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
