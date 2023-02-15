@@ -19,7 +19,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->foreignId('pco_task_id')->constrained('pco_tasks')
                 ->cascadeOnDelete();
-            $table->foreignId('pco_object_id')->constrained('pco_objects')
+            $table->foreignId('pco_order_id')->constrained('pco_orders')
                 ->cascadeOnDelete();
             $table->foreignId('pco_last_state_id')->nullable()->constrained('pco_states')
                 ->cascadeOnDelete();

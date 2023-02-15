@@ -2,13 +2,14 @@
 
 namespace Tests\Feature\Workflow;
 
-use App\Repositories\Workflow\PcoObjectRepository;
+use App\Models\Workflow\CtlProduct;
+use App\Repositories\Workflow\PcoOrderRepository;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\TestesCrud;
 use Tests\Feature\Traits\UserAutenticado;
 use Tests\TestCase;
 
-class PcoObjectTest extends TestCase
+class PcoOrderTest extends TestCase
 {
     use UserAutenticado, WithFaker;
     use TestesCrud {
@@ -20,15 +21,25 @@ class PcoObjectTest extends TestCase
     {
         parent::setUp();
         $this->setUserAutenticado();
-        $this->rota = "/api/wf/pco-objects/";
-        $this->repository = app(PcoObjectRepository::class);
+        $this->rota = "/api/wf/pco-orders/";
+        $this->repository = app(PcoOrderRepository::class);
+        $ctlProduct = CtlProduct::firstOrcreate([
+            'product' => $this->faker->unique()->name,
+            'description' => $this->faker->streetName,
+            'price' => rand(0.01, 20000)
+        ]);
 
-        $this->dadosCreate = [
+        $this->dadosCreate = array(
             'description' => $this->faker->name,
-        ];
+            'ctl_product_id' => $ctlProduct->id,
+            'price' => rand(0.01, 10000),
+        );
+
 
         $this->dadosUpdate = [
             'description' => $this->faker->name,
+            'ctl_product_id' => $ctlProduct->id,
+            'price' => rand(0.01, 10000),
         ];
     }
 

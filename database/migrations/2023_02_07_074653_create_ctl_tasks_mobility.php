@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pco_objects', function (Blueprint $table) {
+        Schema::create('ctl_tasks_mobilities', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
-            $table->unsignedInteger('aging')->nullable();
-            $table->foreignId('user_id')->constrained('users')
-                ->cascadeOnDelete();
+            $table->foreignId('ctl_source_task_id')->constrained('ctl_tasks');
+            $table->foreignId('ctl_target_task_id')->constrained('ctl_tasks');
+            $table->unique(['ctl_source_task_id', 'ctl_target_task_id']);
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
-            $table->timestamp('finalized_at')->nullable();
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pco_objects');
+        Schema::dropIfExists('ctl_tasks_mobilities');
     }
 };

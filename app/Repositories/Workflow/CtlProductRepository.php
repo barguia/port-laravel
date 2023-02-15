@@ -2,12 +2,13 @@
 
 namespace App\Repositories\Workflow;
 
+use App\Models\Workflow\CtlProduct;
 use App\Repositories\AbstractCRUDRepository;
 
-class PcoObjectRepository extends AbstractCRUDRepository
+class CtlProductRepository extends AbstractCRUDRepository
 {
     public function __construct()
     {
-        $this->model = app(\App\Models\Workflow\PcoObject::class);
+        $this->model = app(CtlProduct::class);
     }
 }

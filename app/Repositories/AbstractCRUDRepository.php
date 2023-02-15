@@ -44,6 +44,7 @@ class AbstractCRUDRepository
                 201
             );
         } catch (\Exception $error) {
+            dd($error);
             return response(['message' => 'Something wrong happen. Try again.'], 500);
         }
     }

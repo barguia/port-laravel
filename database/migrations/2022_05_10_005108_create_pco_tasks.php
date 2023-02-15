@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pco_tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pco_object_id')->constrained('pco_objects')->cascadeOnDelete();
+            $table->foreignId('pco_order_id')->constrained('pco_orders')->cascadeOnDelete();
             $table->foreignId('ctl_task_id')->constrained('ctl_tasks')
                 ->cascadeOnDelete();
             $table->foreignId('pco_process_id')->nullable()->constrained('pco_process')

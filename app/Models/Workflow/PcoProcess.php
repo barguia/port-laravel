@@ -20,7 +20,7 @@ class PcoProcess extends Model
 
     public function object(): BelongsTo
     {
-        return $this->belongsTo(PcoObject::class, 'pco_object_id');
+        return $this->belongsTo(PcoOrder::class, 'pco_object_id');
     }
 
     public function tasks(): HasMany

@@ -5,8 +5,9 @@ use App\Http\Controllers\Access\AuthController;
 use App\Http\Controllers\Access\UserController;
 use App\Http\Controllers\Workflow\CtlProcessController;
 use App\Http\Controllers\Workflow\CtlProcessHierarchyController;
+use App\Http\Controllers\Workflow\CtlProductController;
 use App\Http\Controllers\Workflow\CtlTaskController;
-use App\Http\Controllers\Workflow\PcoObjecjtController;
+use App\Http\Controllers\Workflow\PcoOrderController;
 use App\Http\Controllers\Workflow\PcoTaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,8 +46,8 @@ Route::name('workflow.')->middleware(['auth:api'])->prefix('wf/')->group(functio
         'name' => 'process'
     ])->except(['create', 'edit']);
 
-    Route::resource('/pco-objects', PcoObjecjtController::class, [
-        'parameters' => ['pco-objects' => 'object'],
+    Route::resource('/pco-orders', PcoOrderController::class, [
+        'parameters' => ['pco-orders' => 'order'],
         'name' => 'object'
     ])->except(['create', 'edit', 'destroy']);
 
@@ -65,4 +66,10 @@ Route::name('workflow.')->middleware(['auth:api'])->prefix('wf/')->group(functio
 
     Route::get('/pco-tasks/{pco_task}/transfer/{user}', [PcoTaskController::class, 'transfer'])
         ->name('pco-task.transfer');
+
+    Route::resource('/ctl-products', CtlProductController::class, [
+        'parameters' => ['ctl-product' => 'product'],
+        'name' => 'product'
+    ])->except(['create', 'edit']);
 });
+

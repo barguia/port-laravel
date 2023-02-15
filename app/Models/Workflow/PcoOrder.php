@@ -4,11 +4,13 @@ namespace App\Models\Workflow;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PcoObject extends Model
+class PcoOrder extends Model
 {
-    protected $table = "pco_objects";
+    protected $table = "pco_orders";
+
     public $fillable = array(
-        'description',
+        'ctl_product_id',
+        'price',
         'user_id',
     );
 }

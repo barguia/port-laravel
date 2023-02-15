@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pco_process', function (Blueprint $table) {
+        Schema::create('pco_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pco_order_id')->constrained('pco_orders')->cascadeOnDelete();
-            $table->foreignId('ctl_process_id')->constrained('ctl_process')->cascadeOnDelete();
+            $table->foreignId('ctl_product_id')->constrained('ctl_products');
+            $table->float('price')->unsigned();
             $table->unsignedInteger('aging')->nullable();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
             $table->timestamp('finalized_at')->nullable();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pco_process');
+        Schema::dropIfExists('pco_orders');
     }
 };
