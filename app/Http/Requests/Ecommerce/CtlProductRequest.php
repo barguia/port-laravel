@@ -31,7 +31,11 @@ class CtlProductRequest extends FormRequest
                 'max:255',
                 'unique:ctl_products,product,'.$this->route('product'),
             ],
-            'description' => 'nullable|string|max:255',
+            'description' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
             'ctl_default_task_id' => 'required|exists:ctl_tasks,id',
             'price' => 'required|numeric|min:0.01'
         ];

@@ -41,7 +41,7 @@ Route::name('ecommerce.')->middleware(['auth:api'])->prefix('wf/')->group(functi
         ->name('pco-task.transfer');
 
     Route::resource('/ctl-products', CtlProductController::class, [
-        'parameters' => ['ctl-product' => 'product'],
+        'parameters' => ['ctl-products' => 'product'],
         'name' => 'product'
     ])->except(['create', 'edit']);
 });

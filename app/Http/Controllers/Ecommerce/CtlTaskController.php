@@ -10,6 +10,7 @@ use App\Repositories\Ecommerce\CtlTaskRepository;
 class CtlTaskController extends Controller
 {
     use CrudAPIController;
+
     public function __construct(CtlTaskRepository $repository)
     {
         $this->repository = $repository;
