@@ -8,16 +8,17 @@ use Illuminate\Support\Facades\Auth;
 class AbstractCRUDRepository
 {
     protected $model;
+    protected array $with = array();
 
     public function getModelById($id)
     {
         return $this->model->find($id);
     }
 
-    public function index(array $with = []): Response
+    public function index(): Response
     {
         try {
-            $records = $this->model->with($with)->get();
+            $records = $this->model->with($this->with)->get();
 
             return response(
                 [

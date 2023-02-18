@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('ctl_process', function (Blueprint $table) {
             $table->id();
             $table->string('process')->unique();
-            $table->foreignId('ctl_process_hierarchy_id')->constrained('ctl_process_hierarchies')->cascadeOnDelete();
+            $table->unsignedBigInteger('ctl_process_id')->nullable();
+            $table->foreignId('ctl_process_hierarchy_id')
+                ->constrained('ctl_process_hierarchies')
+                ->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();

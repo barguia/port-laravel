@@ -4,6 +4,7 @@ namespace App\Models\Ecommerce;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PcoOrder extends Model
 {
@@ -18,5 +19,15 @@ class PcoOrder extends Model
     public function ctlProduct(): BelongsTo
     {
         return $this->belongsTo(CtlProduct::class, 'ctl_product_id');
+    }
+
+    public function pcoTasks(): HasMany
+    {
+        return $this->hasMany(PcoTask::class, 'pco_order_id');
+    }
+
+    public function pcoProcess(): HasMany
+    {
+        return $this->hasMany(PcoProcess::class, 'pco_order_id');
     }
 }

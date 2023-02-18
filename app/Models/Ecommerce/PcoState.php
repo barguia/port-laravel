@@ -21,4 +21,9 @@ class PcoState extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function ctlState(): BelongsTo
+    {
+        return $this->belongsTo(CtlState::class, 'ctl_state_id');
+    }
 }

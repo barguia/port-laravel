@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pco_process', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pco_order_id')->constrained('pco_orders')->cascadeOnDelete();
+            $table->unsignedBigInteger('pco_process_id')->nullable();
             $table->foreignId('ctl_process_id')->constrained('ctl_process')->cascadeOnDelete();
             $table->unsignedInteger('aging')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();

@@ -24,7 +24,7 @@ class PcoTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'pco_object_id' => 'required|exists:pco_objects,id',
+            'pco_order_id' => 'required|exists:pco_orders,id',
             'ctl_task_id' => 'required|exists:ctl_tasks,id'
         ];
     }

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class PcoOrderRepository extends AbstractCRUDRepository
 {
+    protected array $with = array(
+        'ctlProduct',
+        'pcoTasks.pcoState.ctlState',
+        'pcoProcess',
+    );
     private CtlProductRepository $ctlProductRepository;
     private PcoTaskRepository $pcoTaskRepository;
 
