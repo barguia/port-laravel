@@ -21,7 +21,7 @@ class PcoOrderTest extends TestCase
     {
         parent::setUp();
         $this->setUserAutenticado();
-        $this->rota = "/api/wf/pco-orders/";
+        $this->rota = "/api/ecommerce/pco-orders/";
         $this->repository = app(PcoOrderRepository::class);
         $ctlProduct = CtlProduct::firstOrcreate([
             'product' => $this->faker->unique()->name,

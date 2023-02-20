@@ -18,7 +18,7 @@ class CtlTaskTest extends TestCase
     {
         parent::setUp();
         $this->setUserAutenticado();
-        $this->rota = "/api/wf/ctl-tasks/";
+        $this->rota = "/api/ecommerce/ctl-tasks/";
         $this->repository = app(CtlTaskRepository::class);
         $process = CtlProcess::first() ?? null;
 

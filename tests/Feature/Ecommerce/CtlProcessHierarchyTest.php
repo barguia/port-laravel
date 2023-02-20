@@ -16,7 +16,7 @@ class CtlProcessHierarchyTest extends TestCase
     {
         parent::setUp();
         $this->setUserAutenticado();
-        $this->rota = "/api/wf/ctl-process-hierarchies/";
+        $this->rota = "/api/ecommerce/ctl-process-hierarchies/";
         $this->model = app(CtlProcessHierarchy::class);
 
         $this->dadosCreate = [

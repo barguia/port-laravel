@@ -17,7 +17,7 @@ class CtlProcessTest extends TestCase
     {
         parent::setUp();
         $this->setUserAutenticado();
-        $this->rota = "/api/wf/ctl-process/";
+        $this->rota = "/api/ecommerce/ctl-process/";
         $this->repository = app(CtlProcessRepository::class);
         $processHierarchy = CtlProcessHierarchy::first() ?? null;
 

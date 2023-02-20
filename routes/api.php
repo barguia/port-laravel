@@ -29,4 +29,3 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('api.logout');
     Route::resource('/users', UserController::class);
 });
-

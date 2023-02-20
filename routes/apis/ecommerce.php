@@ -8,7 +8,7 @@ use App\Http\Controllers\Ecommerce\PcoOrderController;
 use App\Http\Controllers\Ecommerce\PcoTaskController;
 use Illuminate\Support\Facades\Route;
 
-Route::name('ecommerce.')->middleware(['auth:api'])->prefix('wf/')->group(function () {
+Route::name('ecommerce.')->middleware(['auth:api'])->prefix('ecommerce/')->group(function () {
     Route::resource('/ctl-process-hierarchies', CtlProcessHierarchyController::class, [
         'parameters' => ['ctl-process-hierarchies' => 'hierarchy'],
         'name' => 'api.hierarchy'

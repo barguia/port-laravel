@@ -20,7 +20,7 @@ class CtlProductTest extends TestCase
     {
         parent::setUp();
         $this->setUserAutenticado();
-        $this->rota = "/api/wf/ctl-products/";
+        $this->rota = "/api/ecommerce/ctl-products/";
         $this->repository = app(CtlProductRepository::class);
 
         $ctlTask = CtlTask::first();
