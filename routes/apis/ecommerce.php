@@ -34,11 +34,13 @@ Route::name('ecommerce.')->middleware(['auth:api'])->prefix('wf/')->group(functi
         'name' => 'pco-task'
     ]);
 
-    Route::get('/pco-tasks/{pco_task_id}/adopt', [PcoTaskController::class, 'adopt'])
-        ->name('pco-task.adopt');
+    Route::get('/pco-tasks/{pco_task}/adopt', [PcoTaskController::class, 'adopt'])
+        ->name('pco-task.adopt')
+        ->middleware(['ecommerce.task.treatment']);
 
     Route::get('/pco-tasks/{pco_task}/transfer/{user}', [PcoTaskController::class, 'transfer'])
-        ->name('pco-task.transfer');
+        ->name('pco-task.transfer')
+        ->middleware(['ecommerce.task.treatment']);
 
     Route::resource('/ctl-products', CtlProductController::class, [
         'parameters' => ['ctl-products' => 'product'],

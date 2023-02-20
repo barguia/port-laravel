@@ -37,6 +37,11 @@ class PcoTaskRepository
         }
     }
 
+    public function getTaskModel()
+    {
+        return $this->pcoTask;
+    }
+
     private function setTaskObject(int $pcoTaskId): void
     {
         $this->pcoTask = $this->model->with($this->with)->find($pcoTaskId);
