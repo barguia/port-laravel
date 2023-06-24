@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('ctl_tasks_mobilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ctl_source_task_id')->constrained('ctl_tasks');
-            $table->foreignId('ctl_target_task_id')->constrained('ctl_tasks');
-            $table->unique(['ctl_source_task_id', 'ctl_target_task_id']);
+            $table->unsignedBigInteger('ctl_source_task_id');
+            $table->unsignedBigInteger('ctl_target_task_id');
+            $table->foreign('ctl_source_task_id', 'fk_ctl_tasks_mobilities_source_task_id')
+                ->on('ctl_tasks')
+                ->references('id');
+            $table->foreign('ctl_target_task_id', 'fk_ctl_tasks_mobilities_target_task_id')
+                ->on('ctl_tasks')
+                ->references('id');
+            $table->unique(['ctl_source_task_id', 'ctl_target_task_id'], 'unique_task_source_target');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

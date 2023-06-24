@@ -1,4 +1,4 @@
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
 # Arguments defined in docker-compose.yml
 ARG user
@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip
+
+RUN apt-get update -y && apt-get install -y librdkafka-dev
+RUN pecl install rdkafka
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

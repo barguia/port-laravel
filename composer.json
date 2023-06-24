@@ -12,6 +12,7 @@
         "laravel/passport": "^10.4",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "promphp/prometheus_client_php": "^2.7",
         "squizlabs/php_codesniffer": "*"
     },
     "require-dev": {

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('ecommerce.')->middleware(['auth:api'])->prefix('ecommerce/')->group(function () {
     Route::resource('/ctl-process-hierarchies', CtlProcessHierarchyController::class, [
         'parameters' => ['ctl-process-hierarchies' => 'hierarchy'],
-        'name' => 'api.hierarchy'
+        'name' => 'hierarchy'
     ])->except(['create', 'edit']);
 
     Route::resource('/ctl-process', CtlProcessController::class, [

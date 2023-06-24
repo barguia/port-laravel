@@ -28,7 +28,7 @@ class CtlProcessHierarchyRequest extends FormRequest
                 'required',
                 'min:3',
                 'max:255',
-                'unique:ctl_process_hierarchies,hierarchy,id,'.$this->route('hierarchy')
+                'unique:ctl_process_hierarchies,hierarchy,'.$this->route('hierarchy')
             ],
             'depth' => 'required|numeric|min:0',
         ];
