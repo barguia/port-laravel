@@ -56,6 +56,12 @@ return [
             'throw' => false,
         ],
 
+        'report' => [
+            'driver' => 'local',
+            'root' => storage_path('app/download_report'),
+            'throw' => false,
+        ],
+
     ],
 
     /*

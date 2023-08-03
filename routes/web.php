@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\Report\Ecommerce\TaskPerProcessReport;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/report', function () {
+    $ob = new TaskPerProcessReport('teste.csv');
+    return $ob->fileExists();
 });
